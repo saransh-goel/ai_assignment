@@ -1,0 +1,41 @@
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`Timetable` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
+
+USE `Timetable`;
+
+DROP TABLE IF EXISTS `Course`;
+
+CREATE TABLE `Course` (
+  `comcod` int unsigned NOT NULL,
+  `courseName` varchar(50) NOT NULL,
+  `courseTitle` varchar(100) NOT NULL,
+  `credit` int unsigned NOT NULL,
+  `compreSch` varchar(100),
+  PRIMARY KEY (`comcod`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+DROP TABLE IF EXISTS `Schedule`;
+
+CREATE TABLE `Schedule` (
+  `comcod` int unsigned NOT NULL,
+  `section` varchar(20) NOT NULL,
+  `room` int unsigned,
+  `time` varchar(20),
+  PRIMARY KEY(`comcod`, `section`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+DROP TABLE IF EXISTS `InstNames`;
+
+CREATE TABLE `InstNames` ( 
+	`insID` INT PRIMARY KEY AUTO_INCREMENT,
+	`profName` VARCHAR(100) NOT NULL,
+	CONSTRAINT `insID_unique` UNIQUE (`insID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+DROP TABLE IF EXISTS `Instructors`;
+
+CREATE TABLE `Instructors` (
+  `comcod` int unsigned NOT NULL,
+  `section` varchar(20) NOT NULL,
+  `profId` varchar(100) NOT NULL,
+  PRIMARY KEY (`comcod`, `section`, `profId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
